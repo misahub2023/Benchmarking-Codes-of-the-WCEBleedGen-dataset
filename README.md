@@ -1,5 +1,5 @@
 # Benchmarking of the WCEBleedGen Dataset: Classification, Detection, Segmentation
-This repository contains the scripts used for evaluating the performance of 16 artificial intelligence models for the [WCEbleedGen Dataset](https://zenodo.org/records/10156571). 10 Classification, 3 Segmentation and 3 Detection based pipelines have been trained, validated, and tested. 
+This repository contains the scripts used in the performance evaluation of 16 artificial intelligence models for the [WCEbleedGen Dataset](https://zenodo.org/records/10156571). 10 classification-based, 3 segmentation-based and 3 detection-based pipelines have been trained, validated, and tested. 
 The models used are:
 * Classification:
    * VGG19
