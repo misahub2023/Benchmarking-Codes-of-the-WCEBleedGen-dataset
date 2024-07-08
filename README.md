@@ -1,5 +1,5 @@
-# AutoWCEBleedGen-Benchmarking: Classification, Detection, Segmentation
-This repository contains the scripts used for evaluating the performance of 16 transfer learning models- 10 Classification, 3 Segmentation and 3 Detection on the [AutoWCEBleedGen Dataset](https://zenodo.org/records/10156571).
+# Benchmarking of the WCEBleedGen Dataset: Classification, Detection, Segmentation
+This repository contains the scripts used for evaluating the performance of 16 artificial intelligence models for the [WCEbleedGen Dataset](https://zenodo.org/records/10156571). 10 Classification, 3 Segmentation and 3 Detection based pipelines have been trained, validated, and tested. 
 The models used are:
 * Classification:
    * VGG19
@@ -491,6 +491,9 @@ All the models were trained for a total of 250 epochs, without any preprocessing
 
 # Results
 The results and the findings will be released in the form of a research paper soon, the preprint has been released and can be accessed at [link](https://www.authorea.com/doi/full/10.22541/essoar.171007121.19572474)
+
+# Contributions
+Palak Handa conceptualized the research idea, performed the data collection, mask analysis, literature review, and did the research paper writing. Manas Dhir contributed in developing the benchmarking pipeline, developing the github repository, and writing the initial draft of the research paper. Dr. Deepak Gunjan from the Department of Gastroenterology and HNU, AIIMS Delhi performed the medical annotations, and was involved in suggestions for improving artificial intelligence algorithms. Dr. Nidhi Goel was involved in literature review and administration. Jyoti Dhatarwal contributed in the initial data collection. Harshita Mangotra contributed in development of the bounding boxes. Divyansh Nautiyal contributed in correcting the multiple bleeding regions and re-making the bounding boxes, and Sanya, Shriya, and Sneha Singh contributed in the result replications on the GPU workstation and table entries. The [WCEbleedGen Dataset](https://zenodo.org/records/10156571) has been actively downloaded more than 1000 times and was utilized in Auto-WCEBleedGen Version 1 and 2 challenge as training dataset. The challenge page is available [here](https://linktr.ee/misahub.challenges).
 
 
 
