@@ -21,7 +21,7 @@ The models used are:
    * YOLOV8n
    * YOLOV8x
 ## Dataset Structure
-+ The dataset structure was as follows:
++ The dataset structure were as follows:
 + datasets/
     + WCEBleedGen/
         + bleeding/
@@ -487,7 +487,7 @@ This script is useful for visualizing the results of a segmentation model on new
 For detection, models were used directly from the [ultralytics repositories](https://docs.ultralytics.com/).
 
 # Setup used for Evaluation
-All the models were trained for a total of 250 epochs, without any preprocessing or modification, the codes were run using 40 GB DGX A100 NVIDIA GPU.
+All the models were trained for a total of 250 epochs, without any preprocessing or modification. The codes were run using 40 GB DGX A100 NVIDIA GPU workstation available at the Department of Electronics and Communication Engineering, Indira Gandhi Delhi Technical University for Women, New Delhi, India. 
 
 # Results
 The results and the findings will be released in the form of a research paper soon, the preprint has been released and can be accessed at [link](https://www.authorea.com/doi/full/10.22541/essoar.171007121.19572474)
