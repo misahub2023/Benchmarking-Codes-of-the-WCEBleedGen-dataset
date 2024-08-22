@@ -2,6 +2,8 @@ import os
 import numpy as np
 from PIL import Image
 import xml.etree.ElementTree as ET
+import xml.dom.minidom
+
 
 def create_bounding_box(mask):
     coords = np.column_stack(np.where(mask > 0))
@@ -16,37 +18,77 @@ def create_bounding_box(mask):
 def save_txt_format(bbox, filename):
     with open(filename, 'w') as f:
         f.write(f"{bbox[0]} {bbox[1]} {bbox[2]} {bbox[3]}\n")
+def indent_xml(elem, level=0):
+    i = level * "  "
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + "  "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for subelem in elem:
+            indent_xml(subelem, level + 1)
+        if not subelem.tail or not subelem.tail.strip():
+            subelem.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+
 
 def save_xml_format(bbox, filename, image_filename, image_size):
     annotation = ET.Element("annotation")
-    folder = ET.SubElement(annotation, "folder").text = "XML"
-    filename_tag = ET.SubElement(annotation, "filename").text = os.path.basename(image_filename)
-    path = ET.SubElement(annotation, "path").text = image_filename
+    folder = ET.SubElement(annotation, "folder")
+    folder.text = "XML"
+    
+    filename_tag = ET.SubElement(annotation, "filename")
+    filename_tag.text = os.path.basename(image_filename)
+    
+    path = ET.SubElement(annotation, "path")
+    path.text = image_filename
 
     source = ET.SubElement(annotation, "source")
-    database = ET.SubElement(source, "database").text = "Unknown"
+    database = ET.SubElement(source, "database")
+    database.text = "Unknown"
 
     size = ET.SubElement(annotation, "size")
-    width = ET.SubElement(size, "width").text = str(image_size[0])
-    height = ET.SubElement(size, "height").text = str(image_size[1])
-    depth = ET.SubElement(size, "depth").text = "3"  
+    width = ET.SubElement(size, "width")
+    width.text = str(image_size[0])
+    height = ET.SubElement(size, "height")
+    height.text = str(image_size[1])
+    depth = ET.SubElement(size, "depth")
+    depth.text = "3"
 
-    segmented = ET.SubElement(annotation, "segmented").text = "0"
+    segmented = ET.SubElement(annotation, "segmented")
+    segmented.text = "0"
 
     obj = ET.SubElement(annotation, "object")
-    name = ET.SubElement(obj, "name").text = "object"  
-    pose = ET.SubElement(obj, "pose").text = "Unspecified"
-    truncated = ET.SubElement(obj, "truncated").text = "0"
-    difficult = ET.SubElement(obj, "difficult").text = "0"
+    name = ET.SubElement(obj, "name")
+    name.text = "object"
+    pose = ET.SubElement(obj, "pose")
+    pose.text = "Unspecified"
+    truncated = ET.SubElement(obj, "truncated")
+    truncated.text = "0"
+    difficult = ET.SubElement(obj, "difficult")
+    difficult.text = "0"
 
     bndbox = ET.SubElement(obj, "bndbox")
-    ET.SubElement(bndbox, "xmin").text = str(bbox[0])
-    ET.SubElement(bndbox, "ymin").text = str(bbox[1])
-    ET.SubElement(bndbox, "xmax").text = str(bbox[2])
-    ET.SubElement(bndbox, "ymax").text = str(bbox[3])
+    xmin = ET.SubElement(bndbox, "xmin")
+    xmin.text = str(bbox[0])
+    ymin = ET.SubElement(bndbox, "ymin")
+    ymin.text = str(bbox[1])
+    xmax = ET.SubElement(bndbox, "xmax")
+    xmax.text = str(bbox[2])
+    ymax = ET.SubElement(bndbox, "ymax")
+    ymax.text = str(bbox[3])
 
+    indent_xml(annotation)
+    
     tree = ET.ElementTree(annotation)
-    tree.write(filename)
+    tree.write(filename, encoding="utf-8", xml_declaration=True)
+
+    xml_str = xml.dom.minidom.parseString(ET.tostring(annotation)).toprettyxml(indent="  ")
+    xml_str = "\n".join([line for line in xml_str.splitlines() if line.strip()])
+    with open(filename, 'w') as f:
+        f.write(xml_str)
 
 def save_yolo_txt_format(bbox, filename, image_size):
     class_id = 0  
