@@ -483,6 +483,108 @@ Original Image                 Segmentation Overlay
 
 This script is useful for visualizing the results of a segmentation model on new images. Modify the script as needed for further customization and experimentation.
 
+## Generating Bounding Boxes from Binary Masks
+The `Binary_mask_to_bounding_box.py` script is designed to process binary mask images and generate bounding boxes around the objects detected within these masks. It supports saving the bounding box information in three different formats:
+
+1. **TXT format** - Contains the bounding box coordinates (xmin, ymin, xmax, ymax).
+2. **XML format (Pascal VOC)** - Contains bounding box details in the Pascal VOC annotation format, which is commonly used in object detection datasets.
+3. **YOLO TXT format** - Contains bounding box details formatted for use with the YOLO (You Only Look Once) object detection framework.
+
+
+### Usage
+
+To run the script, use the following command:
+
+```bash
+python Binary_mask_to_bounding_box.py <path_to_binary_masks_folder> <save_root_folder>
+```
+
+- **`<path_to_binary_masks_folder>`**: The path to the folder containing your binary mask images (`.png` files).
+- **`<save_root_folder>`**: The root folder where the output bounding box files will be saved. The script will automatically create three subfolders (`TXT`, `XML`, `YOLO_TXT`) to store the results in the corresponding formats.
+
+### Example
+
+Assume you have a folder `masks/` containing binary mask images, and you want to save the bounding box files in a folder named `bounding_boxes_output/`. You would run:
+
+```bash
+python Binary_mask_to_bounding_box.py masks/ bounding_boxes_output/
+```
+
+After running this command, the script will generate the following structure within the `bounding_boxes_output/` folder:
+
+```
+bounding_boxes_output/
+├── TXT/
+│   ├── mask1.txt
+│   ├── mask2.txt
+│   └── ...
+├── XML/
+│   ├── mask1.xml
+│   ├── mask2.xml
+│   └── ...
+└── YOLO_TXT/
+    ├── mask1.txt
+    ├── mask2.txt
+    └── ...
+```
+
+Each subfolder will contain the bounding box files in the respective format, corresponding to each mask image processed.
+
+#### Bounding Box Format Details
+
+1. **TXT Format:**
+
+   Each `.txt` file contains a single line with the bounding box coordinates:
+
+   ```
+   xmin ymin xmax ymax
+   ```
+
+2. **XML Format (Pascal VOC):**
+
+   Each `.xml` file follows the Pascal VOC structure and includes information about the image and bounding box:
+
+   ```xml
+   <annotation>
+       <folder>XML</folder>
+       <filename>mask1.png</filename>
+       <path>masks/mask1.png</path>
+       <source>
+           <database>Unknown</database>
+       </source>
+       <size>
+           <width>width_value</width>
+           <height>height_value</height>
+           <depth>3</depth>
+       </size>
+       <segmented>0</segmented>
+       <object>
+           <name>object</name>
+           <pose>Unspecified</pose>
+           <truncated>0</truncated>
+           <difficult>0</difficult>
+           <bndbox>
+               <xmin>xmin_value</xmin>
+               <ymin>ymin_value</ymin>
+               <xmax>xmax_value</xmax>
+               <ymax>ymax_value</ymax>
+           </bndbox>
+       </object>
+   </annotation>
+   ```
+
+3. **YOLO TXT Format:**
+
+   Each `.txt` file contains a single line with normalized bounding box information:
+
+   ```
+   class_id x_center y_center width height
+   ```
+
+   - `class_id`: By default, this is set to `0`.
+   - `x_center`, `y_center`: Normalized coordinates of the bounding box center.
+   - `width`, `height`: Normalized width and height of the bounding box.
+
 # Detection 
 For detection, models were used directly from the [ultralytics repositories](https://docs.ultralytics.com/).
 
