@@ -483,8 +483,8 @@ Original Image                 Segmentation Overlay
 
 This script is useful for visualizing the results of a segmentation model on new images. Modify the script as needed for further customization and experimentation.
 
-# Binary_mask_to_bounding_box.py
-The `generate_bounding_boxes.py` script is designed to process binary mask images and generate bounding boxes around the objects detected within these masks. It supports saving the bounding box information in three different formats:
+# Generating Bounding Boxes from Binary Masks
+The `Binary_mask_to_bounding_box.py` script is designed to process binary mask images and generate bounding boxes around the objects detected within these masks. It supports saving the bounding box information in three different formats:
 
 1. **TXT format** - Contains the bounding box coordinates (xmin, ymin, xmax, ymax).
 2. **XML format (Pascal VOC)** - Contains bounding box details in the Pascal VOC annotation format, which is commonly used in object detection datasets.
@@ -496,7 +496,7 @@ The `generate_bounding_boxes.py` script is designed to process binary mask image
 To run the script, use the following command:
 
 ```bash
-python generate_bounding_boxes.py <path_to_binary_masks_folder> <save_root_folder>
+python Binary_mask_to_bounding_box.py <path_to_binary_masks_folder> <save_root_folder>
 ```
 
 - **`<path_to_binary_masks_folder>`**: The path to the folder containing your binary mask images (`.png` files).
@@ -507,7 +507,7 @@ python generate_bounding_boxes.py <path_to_binary_masks_folder> <save_root_folde
 Assume you have a folder `masks/` containing binary mask images, and you want to save the bounding box files in a folder named `bounding_boxes_output/`. You would run:
 
 ```bash
-python generate_bounding_boxes.py masks/ bounding_boxes_output/
+python Binary_mask_to_bounding_box.py masks/ bounding_boxes_output/
 ```
 
 After running this command, the script will generate the following structure within the `bounding_boxes_output/` folder:
