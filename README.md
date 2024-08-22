@@ -483,7 +483,7 @@ Original Image                 Segmentation Overlay
 
 This script is useful for visualizing the results of a segmentation model on new images. Modify the script as needed for further customization and experimentation.
 
-# Generating Bounding Boxes from Binary Masks
+## Generating Bounding Boxes from Binary Masks
 The `Binary_mask_to_bounding_box.py` script is designed to process binary mask images and generate bounding boxes around the objects detected within these masks. It supports saving the bounding box information in three different formats:
 
 1. **TXT format** - Contains the bounding box coordinates (xmin, ymin, xmax, ymax).
