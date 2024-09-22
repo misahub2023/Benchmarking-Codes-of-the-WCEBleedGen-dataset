@@ -4,7 +4,7 @@ The models used are:
 * Classification:
    * VGG19
    * Xception
-   * ResNet50V2
+   * ResNet101V2
    * InceptionV3
    * InceptionResNetV2
    * MobileNetV2
