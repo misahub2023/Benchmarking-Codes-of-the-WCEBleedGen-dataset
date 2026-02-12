@@ -1,5 +1,5 @@
 # Benchmarking of the WCEBleedGen Dataset: Classification, Detection, Segmentation
-This repository contains the scripts used in the performance evaluation of 16 artificial intelligence models for the [WCEbleedGen Dataset](https://zenodo.org/records/10156571). 10 classification-based, 3 segmentation-based and 3 detection-based pipelines have been trained, validated, and tested. 
+This repository contains the scripts used in the performance evaluation of 16 artificial intelligence models for the [WCEbleedGen Dataset](https://zenodo.org/records/10156571). 9 classification-based, 3 detection-based and 3 segmentation-based pipelines have been trained, validated, and tested. 
 The models used are:
 * Classification:
    * VGG19
@@ -10,16 +10,15 @@ The models used are:
    * MobileNetV2
    * DenseNet169
    * NasNetMobile
-   * EfficientNetB7
    * ConvNeXt
-* Segmentation
-   * UNet
-   * SegNet
-   * LinkNet
 * Detection
    * YOLOV5nu
    * YOLOV8n
    * YOLOV8x
+* Segmentation
+   * UNet
+   * SegNet
+   * LinkNet
 ## Dataset Structure
 + The dataset structure were as follows:
 + datasets/
@@ -106,7 +105,7 @@ This script is designed to create and define deep learning models using various 
 
 #### Command Line Arguments
 
-- `base_model_name`: (Required) Name of the pre-trained model to use (e.g., `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `EfficientNetB7`, `ConvNeXtBase`).
+- `base_model_name`: (Required) Name of the pre-trained model to use (e.g., `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `optimizer_name`: (Required) Name of the optimizer to use (e.g., `Adam`, `SGD`, `RMSprop`).
 - `--learning_rate`: (Optional) Learning rate for the optimizer (default is 0.0001).
 - `--input_shape`: (Optional) Input shape of the images (default is (224, 224, 3)).
@@ -147,10 +146,10 @@ This script is designed to create and define deep learning models using various 
 
 #### Detailed Example
 
-Suppose you want to create a model using the EfficientNetB7 base model, RMSprop optimizer, with a learning rate of 0.0005, and input shape of 256x256x3:
+Suppose you want to create a model using the VGG19 base model, RMSprop optimizer, with a learning rate of 0.0005, and input shape of 256x256x3:
 
 ```bash
-python model_classify.py EfficientNetB7 RMSprop --learning_rate 0.0005 --input_shape 256 256 3
+python model_classify.py  VGG19 RMSprop --learning_rate 0.0005 --input_shape 256 256 3
 ```
 ## Training the models
 * train_classify.py
@@ -162,7 +161,7 @@ This script is designed to train deep learning models using various pre-trained 
 #### Command Line Arguments
 
 - `--data_dir`: (Required) Directory containing the preprocessed data.
-- `--base_model`: (Required) Base model to use for training (choices are `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `EfficientNetB7`, `ConvNeXtBase`).
+- `--base_model`: (Required) Base model to use for training (choices are `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `--optimizer`: (Optional) Optimizer to use (default is `Adam`; choices are `Adam`, `SGD`, `RMSprop`).
 - `--learning_rate`: (Optional) Learning rate for the optimizer (default is 0.0001).
 - `--loss`: (Optional) Loss function to use (default is `categorical_crossentropy`).
@@ -215,10 +214,10 @@ This script is designed to train deep learning models using various pre-trained 
 
 #### Detailed Example
 
-Suppose you want to train a model using the EfficientNetB7 base model, RMSprop optimizer, with a learning rate of 0.0005, batch size of 64, for 15 epochs, and save the model to `trained_model.h5`:
+Suppose you want to train a model using the  base model, RMSprop optimizer, with a learning rate of 0.0005, batch size of 64, for 15 epochs, and save the model to `trained_model.h5`:
 
 ```bash
-python train_model.py --data_dir dataset --base_model EfficientNetB7 --optimizer RMSprop --learning_rate 0.0005 --batch_size 64 --epochs 15 --model_path trained_model.h5
+python train_model.py --data_dir dataset --base_model  --optimizer RMSprop --learning_rate 0.0005 --batch_size 64 --epochs 15 --model_path trained_model.h5
 ```
 
 ### Output
@@ -239,7 +238,7 @@ This script validates a trained model using the validation dataset.
 ##### Command Line Arguments
 
 - `--data_dir`: (Required) Directory containing the preprocessed data.
-- `--base_model`: (Required) Base model to use for validation (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `EfficientNetB7`, `ConvNeXtBase`).
+- `--base_model`: (Required) Base model to use for validation (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `--model_weights`: (Required) Path to the model weights file (.h5).
 - `--augment`: (Optional) Apply data augmentation if specified.
 - `--optimizer`: (Optional) Optimizer to use (default: `Adam`; choices: `Adam`, `SGD`, `RMSprop`).
@@ -268,7 +267,7 @@ This script tests a trained model using the test dataset.
 ##### Command Line Arguments
 
 - `--data_dir`: (Required) Directory containing the preprocessed data.
-- `--base_model`: (Required) Base model to use for testing (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `EfficientNetB7`, `ConvNeXtBase`).
+- `--base_model`: (Required) Base model to use for testing (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `--model_weights`: (Required) Path to the model weights file (.h5).
 - `--augment`: (Optional) Apply data augmentation if specified.
 - `--optimizer`: (Optional) Optimizer to use (default: `Adam`; choices: `Adam`, `SGD`, `RMSprop`).
@@ -299,7 +298,7 @@ This guide explains how to use the `inference_classify.py` script for running in
 #### Command Line Arguments
 
 - `--test_dir`: (Required) Directory containing the test images.
-- `--base_model`: (Required) Base model to use for inference (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `EfficientNetB7`, `ConvNeXtBase`).
+- `--base_model`: (Required) Base model to use for inference (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `--model_weights`: (Required) Path to the model weights file (.h5).
 - `--optimizer`: (Optional) Optimizer to use (default: `Adam`; choices: `Adam`, `SGD`, `RMSprop`).
 - `--learning_rate`: (Optional) Learning rate for the optimizer (default: 0.0001).
