@@ -318,6 +318,8 @@ To use the SGD optimizer with a custom learning rate of 0.001:
 ```bash
 python inference_classify.py --test_dir test_images --base_model VGG19 --model_weights model.h5 --optimizer SGD --learning_rate 0.001
 ```
+# Detection 
+For detection, models were used directly from the [ultralytics repositories](https://docs.ultralytics.com/).
 # Segmentation
 ## Loading the data- images and masks
 This guide explains how to use the data_loader_segment.py script for loading and preparing image segmentation data using TensorFlow and OpenCV. This script loads image data for segmentation tasks, preparing it as TensorFlow datasets.
@@ -584,8 +586,6 @@ Each subfolder will contain the bounding box files in the respective format, cor
    - `x_center`, `y_center`: Normalized coordinates of the bounding box center.
    - `width`, `height`: Normalized width and height of the bounding box.
 
-# Detection 
-For detection, models were used directly from the [ultralytics repositories](https://docs.ultralytics.com/).
 
 # Setup used for Evaluation
 All the models were trained for a total of 250 epochs, without any preprocessing or modification. The codes were run using 40 GB DGX A100 NVIDIA GPU workstation available at the Department of Electronics and Communication Engineering, Indira Gandhi Delhi Technical University for Women, New Delhi, India. 
