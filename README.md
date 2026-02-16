@@ -105,7 +105,7 @@ This script is designed to create and define deep learning models using various 
 
 #### Command Line Arguments
 
-- `base_model_name`: (Required) Name of the pre-trained model to use (e.g., `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
+- `base_model_name`: (Required) Name of the pre-trained model to use (e.g., `VGG19`, `Xception`, `ResNet50V2`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `optimizer_name`: (Required) Name of the optimizer to use (e.g., `Adam`, `SGD`, `RMSprop`).
 - `--learning_rate`: (Optional) Learning rate for the optimizer (default is 0.0001).
 - `--input_shape`: (Optional) Input shape of the images (default is (224, 224, 3)).
@@ -130,10 +130,10 @@ This script is designed to create and define deep learning models using various 
 
 3. **Different Base Model and Optimizer**
 
-   To create a model using the InceptionV3 base model and SGD optimizer:
+   To create a model using the VGG19 base model and SGD optimizer:
 
    ```bash
-   python model_classify.py InceptionV3 SGD
+   python model_classify.py VGG19 SGD
    ```
 
 4. **Custom Input Shape**
@@ -161,7 +161,7 @@ This script is designed to train deep learning models using various pre-trained 
 #### Command Line Arguments
 
 - `--data_dir`: (Required) Directory containing the preprocessed data.
-- `--base_model`: (Required) Base model to use for training (choices are `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
+- `--base_model`: (Required) Base model to use for training (choices are `VGG19`, `Xception`, `ResNet50V2`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `--optimizer`: (Optional) Optimizer to use (default is `Adam`; choices are `Adam`, `SGD`, `RMSprop`).
 - `--learning_rate`: (Optional) Learning rate for the optimizer (default is 0.0001).
 - `--loss`: (Optional) Loss function to use (default is `categorical_crossentropy`).
@@ -190,10 +190,10 @@ This script is designed to train deep learning models using various pre-trained 
 
 3. **Different Base Model and Loss Function**
 
-   To train using the InceptionV3 base model with binary cross-entropy loss:
+   To train using the VGG19 base model with binary cross-entropy loss:
 
    ```bash
-   python train_model.py --data_dir dataset --base_model InceptionV3 --loss binary_crossentropy
+   python train_model.py --data_dir dataset --base_model VGG19 --loss binary_crossentropy
    ```
 
 4. **Custom Batch Size and Epochs**
@@ -238,7 +238,7 @@ This script validates a trained model using the validation dataset.
 ##### Command Line Arguments
 
 - `--data_dir`: (Required) Directory containing the preprocessed data.
-- `--base_model`: (Required) Base model to use for validation (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
+- `--base_model`: (Required) Base model to use for validation (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `--model_weights`: (Required) Path to the model weights file (.h5).
 - `--augment`: (Optional) Apply data augmentation if specified.
 - `--optimizer`: (Optional) Optimizer to use (default: `Adam`; choices: `Adam`, `SGD`, `RMSprop`).
@@ -267,7 +267,7 @@ This script tests a trained model using the test dataset.
 ##### Command Line Arguments
 
 - `--data_dir`: (Required) Directory containing the preprocessed data.
-- `--base_model`: (Required) Base model to use for testing (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
+- `--base_model`: (Required) Base model to use for testing (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `--model_weights`: (Required) Path to the model weights file (.h5).
 - `--augment`: (Optional) Apply data augmentation if specified.
 - `--optimizer`: (Optional) Optimizer to use (default: `Adam`; choices: `Adam`, `SGD`, `RMSprop`).
@@ -280,7 +280,7 @@ This script tests a trained model using the test dataset.
 To test a model using the InceptionV3 base model with default settings and data from the `dataset` directory:
 
 ```bash
-python test_classify.py --data_dir dataset --base_model InceptionV3 --model_weights model.h5
+python test_classify.py --data_dir dataset --base_model VGG19 --model_weights model.h5
 ```
 
 To test using the ResNet50V2 base model with binary cross-entropy loss:
@@ -298,7 +298,7 @@ This guide explains how to use the `inference_classify.py` script for running in
 #### Command Line Arguments
 
 - `--test_dir`: (Required) Directory containing the test images.
-- `--base_model`: (Required) Base model to use for inference (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionV3`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
+- `--base_model`: (Required) Base model to use for inference (choices: `VGG19`, `Xception`, `ResNet50V2`, `InceptionResNetV2`, `MobileNetV2`, `DenseNet169`, `NASNetMobile`, `ConvNeXtBase`).
 - `--model_weights`: (Required) Path to the model weights file (.h5).
 - `--optimizer`: (Optional) Optimizer to use (default: `Adam`; choices: `Adam`, `SGD`, `RMSprop`).
 - `--learning_rate`: (Optional) Learning rate for the optimizer (default: 0.0001).
@@ -349,7 +349,7 @@ python data_loader_segment.py --path dataset --validation_size 0.15 --batch_size
 ## Creating and defining the Models
 * model_segment.py
   
-This script allows the creation and compilation of three different segmentation models: UNet, SegNet, and LinkNet. The script utilizes TensorFlow/Keras for building the models. It also provides an option to specify various hyperparameters such as input size, filters, and learning rate.
+This script allows the creation and compilation of three different segmentation models: Unet, Segnet, and Linknet. The script utilizes TensorFlow/Keras for building the models. It also provides an option to specify various hyperparameters such as input size, filters, and learning rate.
 
 ### Usage
 
@@ -378,7 +378,7 @@ Run the script from the command line by specifying the model type, input size, f
 
 - `--input_size`: (Optional) Specifies the size of the input image. Default is 224.
 
-- `--filters`: (Optional) Specifies the number of filters for each convolutional layer in the UNet model. Default is [64, 128, 256, 512]. Only applicable for the UNet model.
+- `--filters`: (Optional) Specifies the number of filters for each convolutional layer in the UNet model. Default is [64, 128, 256, 512]. Only applicable for the Unet model.
 
 - `--learning_rate`: (Optional) Specifies the learning rate for the optimizer. Default is 0.001.
 ## Training the Models
@@ -403,17 +403,17 @@ Run the script from the command line by specifying the model type, data path, in
 
 ##### Examples
 
-1. **Train UNet Model**
+1. **Train Unet Model**
    ```bash
    python train_segment.py --model unet --data_path /path/to/dataset --input_size 224 --filters 64 128 256 512 --learning_rate 0.0001 --epochs 250 --batch_size 32 --validation_size 0.2 --test_size 0.1
    ```
 
-2. **Train SegNet Model**
+2. **Train Segnet Model**
    ```bash
    python train_segment.py --model segnet --data_path /path/to/dataset --input_size 224 --learning_rate 0.0001 --epochs 250 --batch_size 32 --validation_size 0.2 --test_size 0.1
    ```
 
-3. **Train LinkNet Model**
+3. **Train Linknet Model**
    ```bash
    python train_segment.py --model linknet --data_path /path/to/dataset --input_size 224 --learning_rate 0.0001 --epochs 250 --batch_size 32 --validation_size 0.2 --test_size 0.1
    ```
@@ -441,25 +441,25 @@ The script outputs the summary of the created model architecture and compiles th
 ## Inferencing
 * segment_inference.py
 
-This script is designed for performing inference on images using pre-trained segmentation models. It supports three model architectures: UNet, SegNet, and LinkNet. The script reads an input image, applies the segmentation model, and displays the original image along with the segmentation overlay.
+This script is designed for performing inference on images using pre-trained segmentation models. It supports three model architectures: Unet, Segnet, and Linknet. The script reads an input image, applies the segmentation model, and displays the original image along with the segmentation overlay.
 
 ### Usage
 
-Run the script from the command line by specifying the input image path, model architecture, model weights path, input shape, and filters (for UNet only).
+Run the script from the command line by specifying the input image path, model architecture, model weights path, input shape, and filters (for Unet only).
 
 #### Example Commands
 
-1. **UNet Model**
+1. **Unet Model**
    ```bash
    python segment_inference.py --image_path /path/to/image.jpg --model_name unet --weights_path /path/to/weights.h5 --input_shape 224 224 3 --filters 64 128 256 512
    ```
 
-2. **SegNet Model**
+2. **Segnet Model**
    ```bash
    python segment_inference.py --image_path /path/to/image.jpg --model_name segnet --weights_path /path/to/weights.h5 --input_shape 224 224 3
    ```
 
-3. **LinkNet Model**
+3. **Linknet Model**
    ```bash
    python segment_inference.py --image_path /path/to/image.jpg --model_name linknet --weights_path /path/to/weights.h5 --input_shape 224 224 3
    ```
@@ -470,7 +470,7 @@ Run the script from the command line by specifying the input image path, model a
 - `--model_name`: (Required) Specifies the model architecture to use. Choices are "unet", "segnet", "linknet".
 - `--weights_path`: (Required) Path to the model weights file.
 - `--input_shape`: (Optional) Input shape for the model. Default is [224, 224, 3].
-- `--filters`: (Optional) Filters for the UNet model. Default is [64, 128, 256, 512]. Only applicable for the UNet model.
+- `--filters`: (Optional) Filters for the Unet model. Default is [64, 128, 256, 512]. Only applicable for the Unet model.
 
 
 ### Example Output
@@ -591,10 +591,7 @@ Each subfolder will contain the bounding box files in the respective format, cor
 All the models were trained for a total of 250 epochs, without any preprocessing or modification. The codes were run using 40 GB DGX A100 NVIDIA GPU workstation available at the Department of Electronics and Communication Engineering, Indira Gandhi Delhi Technical University for Women, New Delhi, India. 
 
 # Results
-The results and the findings will be released in the form of a research paper soon, the preprint has been released and can be accessed at [link](https://www.authorea.com/doi/full/10.22541/essoar.171007121.19572474)
-
-# Contributions
-Palak Handa conceptualized the research idea, performed the data collection, mask analysis, literature review, and did the research paper writing. Manas Dhir contributed in developing the benchmarking pipeline, developing the github repository, and writing the initial draft of the research paper. Dr. Deepak Gunjan from the Department of Gastroenterology and HNU, AIIMS Delhi performed the medical annotations, and was involved in suggestions for improving artificial intelligence algorithms. Dr. Nidhi Goel was involved in literature review and administration. Jyoti Dhatarwal contributed in the initial data collection. Harshita Mangotra contributed in development of the bounding boxes. Divyansh Nautiyal contributed in correcting the multiple bleeding regions and re-making the bounding boxes, and Nishu, Sanya, Shriya, and Sneha Singh contributed in the result replications on the GPU workstation and table entries. The [WCEbleedGen Dataset](https://zenodo.org/records/10156571) has been actively downloaded more than 1000 times and was utilized in Auto-WCEBleedGen Version 1 and 2 challenge as training dataset. The challenge page is available [here](https://linktr.ee/misahub.challenges).
+The results and the findings will be released in the form of a research paper soon - consideration in Data in Brief, the preprint has been released and can be accessed at [link](https://www.authorea.com/doi/full/10.22541/essoar.171007121.19572474).The [WCEbleedGen Dataset](https://zenodo.org/records/10156571) has been actively downloaded more than 1000 times and was utilized in Auto-WCEBleedGen Version 1 and 2 challenge as training dataset. The challenge page is available [here](https://linktr.ee/misahub.challenges).
 
 
 
