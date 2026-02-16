@@ -357,17 +357,17 @@ Run the script from the command line by specifying the model type, input size, f
 
 #### Examples
 
-1. **UNet Model**
+1. **Unet Model**
    ```bash
    python model_segment.py --model unet --input_size 224 --filters 64 128 256 512 --learning_rate 0.001
    ```
 
-2. **SegNet Model**
+2. **Segnet Model**
    ```bash
    python model_segment.py --model segnet --input_size 224 --learning_rate 0.001
    ```
 
-3. **LinkNet Model**
+3. **Linknet Model**
    ```bash
    python model_segment.py --model linknet --input_size 224 --learning_rate 0.001
    ```
