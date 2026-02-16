@@ -16,9 +16,9 @@ The models used are:
    * YOLOV8n
    * YOLOV8x
 * Segmentation
-   * UNet
-   * SegNet
-   * LinkNet
+   * Unet
+   * Segnet
+   * Linknet
 ## Dataset Structure
 + The dataset structure were as follows:
 + datasets/
