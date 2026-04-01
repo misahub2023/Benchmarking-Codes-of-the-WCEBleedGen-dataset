@@ -588,10 +588,8 @@ Each subfolder will contain the bounding box files in the respective format, cor
 
 
 # Setup used for Evaluation
-All the models were trained for a total of 250 epochs, without any preprocessing or modification. The codes were run using 40 GB DGX A100 NVIDIA GPU workstation available at the Department of Electronics and Communication Engineering, Indira Gandhi Delhi Technical University for Women, New Delhi, India. 
+All the models were trained for a total of 250 epochs, without any preprocessing or modification.
 
-# Results
-The results and the findings will be released in the form of a research paper soon - consideration in Data in Brief, the preprint has been released and can be accessed at [link](https://www.authorea.com/doi/full/10.22541/essoar.171007121.19572474).The [WCEbleedGen Dataset](https://zenodo.org/records/10156571) has been actively downloaded more than 1000 times and was utilized in Auto-WCEBleedGen Version 1 and 2 challenge as training dataset. The challenge page is available [here](https://linktr.ee/misahub.challenges).
 
 
 
